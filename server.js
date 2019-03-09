@@ -31,7 +31,7 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/whoami", function (req, res) {
 
 	//1. I can get the IP address	
-	var ip = req.connection.remoteAddress;
+	var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
 
 	//preferred languages (from header Accept-Language)
 	var language = req.headers["accept-language"];
